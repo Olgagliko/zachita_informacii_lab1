@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+string bubble_sort (int mass[], int n) {
+    string newmass;
+    for (int i = 0; i < 122; i++) {
+        for (int j = 0; j < 122 - i; j++) {
+            if (mass[i] > mass[i + 1])
+            {
+                int t = mass[i];
+                mass[i] = mass[i + 1];
+                mass[i + 1] = t;
+            }
+        }
+        newmass += to_string(mass[122-i]);
+    }
+    return(newmass);
+};
+
+string shifr(string text, int step)
+{
+    string new_text;
+    for (int i = 0; i < (text.length()); i++) {
+        new_text += char(((int)(text[i])) + step);
+    }
+    return(new_text);
+};
+
+int rasshifr(string text, string newtext) {
+    int mass[122];
+    for (int j = 0; j < 122; j++) {
+        mass[j] = 0;
+    }
+    for (int i = 0; i < (newtext.length()); i++) {
+        if ((int)(newtext[i])==32){}
+        else mass[(int)(newtext[i])] += 1;
+    }
+    bubble_sort(mass, 122);
+    return(mass[121]);
+}
+
+int main()
+{
+    setlocale(0, "Rus");
+    string text;
+    int step,n;
+    int mass[122];
+    cout << "Введите текст для зашифровки с помощью шифра Цезаря: \n";
+    getline(cin, text);
+    cout << "Введите значение ключа: \n";
+    cin >> step;
+    cout << "Зашифрованный текст: \n";
+    cout<< shifr(text, step)<<endl;
+    cout << "Значение ключа: \n";
+    rasshifr(text, shifr(text, step));
+}
