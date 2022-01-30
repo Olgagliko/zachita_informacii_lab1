@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string shifr(string text, int step)
+{
+    string new_text;
+    for (int i = 0; i < (text.length()); i++) {
+        new_text += char(((int)(text[i])) + step);
+    }
+    return(new_text);
+};
+
+int rasshifr(string newtext) {
+    const int max_asci = 123;
+    int mass[max_asci];
+
+    int t = 0;
+    for (int j = 0; j < max_asci; j++) {
+        mass[j] = 0;
+    }
+    for (int i = 0; i < (newtext.length()); i++) {
+        if ((int)newtext[i] != 32) mass[(int)(newtext[i])] += 1;
+    }
+    
+    for (int i = 0; i < max_asci; i++) {
+        if (mass[i] > t)
+        {
+            t = mass[i];
+        }
+        
+    }
+    int shag = t - (int)(e);
+    for (int i = 0; i < (newtext.length()); i++) {
+        newtext[i] = char((int)(newtext[i]) - shag); 
+    };
+    cout << newtext << endl<<"Значение ключа равно: " << endl;
+    return(shag);
+}
+
+int main()
+{
+
+    setlocale(0, "Rus");
+    string text;
+    int step;
+    cout << "Введите текст для зашифровки с помощью шифра Цезаря: \n";
+    getline(cin, text);
+    cout << "Введите значение ключа: \n";
+    cin >> step;
+    cout << "Зашифрованный текст: \n";
+    cout << shifr(text, step) << endl;
+    cout << "Расшифрованный текст: \n";
+    cout << rasshifr(shifr(text, step));
+}
