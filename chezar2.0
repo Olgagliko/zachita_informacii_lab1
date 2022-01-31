@@ -7,8 +7,9 @@ string shifr(string text, int step)
 {
     string new_text;
     for (int i = 0; i < (text.length()); i++) {
-        new_text += char(((int)(text[i])) + step);
-    }
+        if ((((int)(text[i])) + step) > 122) new_text += char(((int)(text[i]) + step) - 122);
+        else new_text += char(((int)(text[i])) + step);
+        }
     return(new_text);
 };
 
@@ -33,8 +34,10 @@ int rasshifr(string newtext) {
     }
     int shag = 0;
     shag = pp - (int)('e');
+    while (shag < 0) shag += 122;
     for (int i = 0; i < (newtext.length()); i++) {
-        newtext[i] = char((int)(newtext[i]) - shag);
+        if (((int)(newtext[i]) - shag) < 0) newtext[i] = char((int)(newtext[i]) - shag+122);
+        else newtext[i] = char((int)(newtext[i]) - shag);
     };
     cout << newtext << endl << "Значение ключа равно: " << endl;
     return(shag);
