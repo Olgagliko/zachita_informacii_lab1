@@ -14,34 +14,34 @@ string shifr(string text, int step)
 
 int rasshifr(string newtext) {
     const int max_asci = 123;
-    int mass[max_asci];
+    int mass[max_asci] = {};
 
-    int t = 0;
-    for (int j = 0; j < max_asci; j++) {
-        mass[j] = 0;
-    }
+    int t = 0,p=0,tt=0,pp=0;
     for (int i = 0; i < (newtext.length()); i++) {
-        if ((int)newtext[i] != 32) mass[(int)(newtext[i])] += 1;
+        mass[(int)(newtext[i])] += 1;
     }
-    
+
     for (int i = 0; i < max_asci; i++) {
-        if (mass[i] > t)
-        {
+        if (mass[i] > t) {
             t = mass[i];
+            tt = i;
         }
-        
+        else if (mass[i] > p) {
+            p = mass[i];
+            pp = i;
+        }
     }
-    int shag = t - (int)(e);
+    int shag = 0;
+    shag = pp - (int)('e');
     for (int i = 0; i < (newtext.length()); i++) {
-        newtext[i] = char((int)(newtext[i]) - shag); 
+        newtext[i] = char((int)(newtext[i]) - shag);
     };
-    cout << newtext << endl<<"Значение ключа равно: " << endl;
+    cout << newtext << endl << "Значение ключа равно: " << endl;
     return(shag);
 }
 
 int main()
 {
-
     setlocale(0, "Rus");
     string text;
     int step;
